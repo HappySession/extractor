@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  core:
+    container_name: core
+    restart: always
+    build: .
+    depends_on:
+      - mongo-extractor
+  mongo:
+    container_name: mongo-extractor
+    image: mongo
+    volumes:
+      - ../happy-compose/data:/data/db
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: echo 'db.stats().ok' | mongo localhost:27017/happy --quiet
+      interval: 5s
+      timeout: 5s
+      retries: 12

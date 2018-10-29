@@ -1,0 +1,7 @@
+.vscode
+tmp.ww3.grib2
+build/
+data/
+dist/
+pygrib/
+venv/
